@@ -47,7 +47,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.twitter',      # OAuth new  
     "sslserver",
     'dashboard.apps.DashboardConfig',
-    
+    'collection.apps.CollectionConfig',
+    'history.apps.HistoryConfig',
+    'notification.apps.NotificationConfig',
 ]
 
 MIDDLEWARE = [
@@ -62,8 +64,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'core.urls'
-LOGIN_REDIRECT_URL = "home"  # Route defined in home/urls.py
-LOGOUT_REDIRECT_URL = "home"  # Route defined in home/urls.py
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'dashboardIndex'
+LOGOUT_REDIRECT_URL = 'login'
 TEMPLATE_DIR = os.path.join(CORE_DIR, "apps/templates")  # ROOT dir for templates
 
 TEMPLATES = [
