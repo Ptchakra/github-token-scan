@@ -4,6 +4,7 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 import os, environ
+from core.__init__ import first_run
 
 env = environ.Env(
     # set casting, default value
@@ -11,14 +12,15 @@ env = environ.Env(
 )
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Take environment variables from .env file
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY', default='S#perS3crEt_007')
+SECRET_FILE = os.path.join(BASE_DIR, 'secret')
+SECRET_KEY = first_run(SECRET_FILE, BASE_DIR)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
@@ -39,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.home',                                    # Enable the inner home (home)
+    # 'apps.home',                                    # Enable the inner home (home)
     'allauth',                                      # OAuth new
     'allauth.account',                              # OAuth new
     'allauth.socialaccount',                        # OAuth new 
@@ -67,12 +69,12 @@ ROOT_URLCONF = 'core.urls'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'dashboardIndex'
 LOGOUT_REDIRECT_URL = 'login'
-TEMPLATE_DIR = os.path.join(CORE_DIR, "apps/templates")  # ROOT dir for templates
+# TEMPLATE_DIR = os.path.join(CORE_DIR, "apps/templates")  # ROOT dir for templates
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR],
+        'DIRS': [(os.path.join(BASE_DIR, 'templates')),(os.path.join(BASE_DIR, 'tools/scan_results'))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
