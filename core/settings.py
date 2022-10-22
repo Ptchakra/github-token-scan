@@ -49,9 +49,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.twitter',      # OAuth new  
     "sslserver",
     'dashboard.apps.DashboardConfig',
-    'collection.apps.CollectionConfig',
-    'history.apps.HistoryConfig',
-    'notification.apps.NotificationConfig',
+    # 'collection.apps.CollectionConfig',
+    # 'history.apps.HistoryConfig',
+    # 'notification.apps.NotificationConfig',
 ]
 
 MIDDLEWARE = [

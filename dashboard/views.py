@@ -9,8 +9,7 @@ from django.contrib import messages
 @login_required(login_url="/login/")
 def index(request):
     context = {'segment': 'index'}
-    return render(request, 'dashboard/index.html', context)
-
+    return render(request, 'profile/index.html', context)
 
 def profile(request):
     context = {'segment': 'profile'}
