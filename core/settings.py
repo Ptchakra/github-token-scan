@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'apps.home',                                    # Enable the inner home (home)
     'allauth',                                      # OAuth new
     'allauth.account',                              # OAuth new
     'allauth.socialaccount',                        # OAuth new 
@@ -49,9 +48,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.twitter',      # OAuth new  
     "sslserver",
     'dashboard.apps.DashboardConfig',
-    # 'collection.apps.CollectionConfig',
-    # 'history.apps.HistoryConfig',
-    # 'notification.apps.NotificationConfig',
+    'collection.apps.CollectionConfig',
+    'history.apps.HistoryConfig',
 ]
 
 MIDDLEWARE = [

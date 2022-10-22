@@ -8,8 +8,4 @@ urlpatterns = [
         '',
         views.index,
         name='dashboardIndex'),
-    path(
-        'profile/',
-        views.profile,
-        name='profile'),
 ]
