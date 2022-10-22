@@ -45,7 +45,11 @@ INSTALLED_APPS = [
     'allauth.socialaccount',                        # OAuth new 
     'allauth.socialaccount.providers.github',       # OAuth new 
     'allauth.socialaccount.providers.twitter',      # OAuth new  
-    "sslserver"    
+    "sslserver",
+    'dashboard.apps.DashboardConfig',
+    'collection.apps.CollectionConfig',
+    'history.apps.HistoryConfig',
+    'notification.apps.NotificationConfig',
 ]
 
 MIDDLEWARE = [
@@ -61,9 +65,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'core.urls'
 LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'dashboardIndex'
 LOGOUT_REDIRECT_URL = 'login'
-LOGIN_REDIRECT_URL = "dashboard"  # Route defined in home/urls.py
-LOGOUT_REDIRECT_URL = "login"  # Route defined in home/urls.py
 TEMPLATE_DIR = os.path.join(CORE_DIR, "apps/templates")  # ROOT dir for templates
 
 TEMPLATES = [
