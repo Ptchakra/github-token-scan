@@ -10,7 +10,7 @@ Dashboard
 <link rel="stylesheet" type="text/css" href="{% static 'assets/css/widgets/modules-widgets.css' %}">
 <link href="{% static 'assets/css/dashboard/dash_1.css' %}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="{% static 'assets/css/elements/alert.css' %}">
-<link href="{% static 'plugins/apex/apexcharts.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'assets/plugins/apex/apexcharts.css' %}" rel="stylesheet" type="text/css">
 <link href="{% static 'assets/css/elements/avatar.css' %}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="{% static 'assets/css/custom.css' %}">
 {% endblock custom_js_css_link %}
@@ -457,7 +457,7 @@ Dashboard
 
 
 {% block page_level_script %}
-<script src="{% static 'plugins/apex/apexchart.min.js' %}"></script>
+<script src="{% static 'assets/plugins/apex/apexchart.min.js' %}"></script>
 <script type="text/javascript">
 // apex charts for vulnerability summary
 var options = {

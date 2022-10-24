@@ -16,7 +16,8 @@ env
 venv
 .env*
 
-
+default_github_access_token.yaml
+*default_github_access_token.yaml
 
 # other
 .DS_Store

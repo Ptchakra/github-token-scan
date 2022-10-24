@@ -6,9 +6,10 @@ Copyright (c) 2019 - present AppSeed.us
 import os, environ
 from core.__init__ import first_run
 
+
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, True)
+    DEBUG=(bool, False)
 )
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -26,7 +27,23 @@ SECRET_KEY = first_run(SECRET_FILE, BASE_DIR)
 DEBUG = env('DEBUG')
 
 # Assets Management
-ASSETS_ROOT = os.getenv('ASSETS_ROOT', '/static/assets') 
+# STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# # ASSETS_ROOT = os.getenv('ASSETS_ROOT', '/static/assets') 
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "static"),
+# ]
+
+
+ASSETS_ROOT = "/staticfiles"
+STATIC_ROOT = os.path.join(CORE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+STATIC_URL = '/staticfiles/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(CORE_DIR, 'static'),
+) 
 
 # load production server from .env
 ALLOWED_HOSTS        = ['localhost', 'localhost:85', '127.0.0.1',               env('SERVER', default='127.0.0.1') ]
@@ -41,6 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'allauth',                                      # OAuth new
     'allauth.account',                              # OAuth new
     'allauth.socialaccount',                        # OAuth new 
@@ -50,6 +68,7 @@ INSTALLED_APPS = [
     'dashboard.apps.DashboardConfig',
     'collection.apps.CollectionConfig',
     'history.apps.HistoryConfig',
+    'authentication.apps.AuthenticationConfig',
 ]
 
 MIDDLEWARE = [
@@ -59,20 +78,23 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'login_required.middleware.LoginRequiredMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
+LOGIN_REQUIRED_IGNORE_VIEW_NAMES = [
+    'login',
+]
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'dashboardIndex'
 LOGOUT_REDIRECT_URL = 'login'
-# TEMPLATE_DIR = os.path.join(CORE_DIR, "apps/templates")  # ROOT dir for templates
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [(os.path.join(BASE_DIR, 'templates')),(os.path.join(BASE_DIR, 'tools/scan_results'))],
+        'DIRS': [(os.path.join(BASE_DIR, 'templates'))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,7 +102,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'apps.context_processors.cfg_assets_root',
             ],
         },
     },
@@ -146,13 +167,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-STATIC_ROOT = os.path.join(CORE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(CORE_DIR, 'staticfiles')
+# STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(CORE_DIR, 'apps/static'),
-) 
+# STATICFILES_DIRS = (
+#     os.path.join(CORE_DIR, 'static'),
+# ) 
 
 #############################################################
 # OAuth settings 
